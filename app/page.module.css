@@ -1,0 +1,582 @@
+.heroContainer {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-sans), "Satoshi", sans-serif;
+  color: #0F172A;
+}
+
+/* Base Infinite Grid */
+.gridContainer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.gridLines {
+  position: absolute;
+  /* Make bounds massive to allow infinite panning without edges */
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background-image: 
+    linear-gradient(to right, rgba(147, 51, 234, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(147, 51, 234, 0.4) 1px, transparent 1px);
+  background-size: 60px 60px;
+  /* Diagonal pan equal to background size creates infinite loop */
+  animation: flowingGrid 15s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes flowingGrid {
+  0% { transform: translateY(0px) translateX(0px); }
+  100% { transform: translateY(60px) translateX(60px); }
+}
+
+/* Colorful Blobs for Glassmorphism Backend */
+.blobPurple, .blobOrange, .blobBlue {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.6;
+  z-index: 0;
+  animation: blobFloat 20s infinite alternate ease-in-out;
+}
+
+.blobPurple {
+  top: 10%;
+  right: 15%;
+  width: 600px;
+  height: 600px;
+  background: rgba(147, 51, 234, 0.3);
+}
+
+.blobOrange {
+  bottom: 0%;
+  left: 0%;
+  width: 700px;
+  height: 700px;
+  background: rgba(249, 115, 22, 0.25);
+  animation-delay: -5s;
+}
+
+.blobBlue {
+  top: 40%;
+  left: 30%;
+  width: 500px;
+  height: 500px;
+  background: rgba(56, 189, 248, 0.2);
+  animation-delay: -10s;
+}
+
+@keyframes blobFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(100px, -50px) scale(1.1); }
+  100% { transform: translate(-50px, 100px) scale(0.9); }
+}
+
+/* Header */
+.header {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  z-index: 20;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
+}
+
+.logoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #A855F7, #7E22CE);
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
+}
+
+.nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    display: flex;
+    gap: 3rem;
+  }
+  .nav a {
+    text-decoration: none;
+    color: #475569;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #9333EA;
+    transition: width 0.3s ease;
+  }
+  .nav a:hover {
+    color: #9333EA;
+  }
+  .nav a:hover::after {
+    width: 100%;
+  }
+}
+
+.navButton {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(147, 51, 234, 0.2);
+  padding: 0.6rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #9333EA;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+/* Main Content */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  padding: 4rem 1.5rem;
+  z-index: 20;
+}
+
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.glassBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255,255,255,0.4);
+}
+
+.badgePulse {
+  width: 10px;
+  height: 10px;
+  background-color: #9333EA;
+  border-radius: 50%;
+  position: relative;
+}
+
+.badgePulse::after {
+  content: '';
+  position: absolute;
+  top: -4px; right: -4px; bottom: -4px; left: -4px;
+  border: 2px solid #9333EA;
+  border-radius: 50%;
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+.badgeText {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #581C87;
+}
+
+.headline {
+  font-size: 2.75rem;
+  line-height: 1.15;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  color: #0F172A;
+  max-width: 900px;
+  text-wrap: balance;
+}
+
+@media (min-width: 768px) {
+  .headline { font-size: 3.75rem; }
+}
+
+@media (min-width: 1024px) {
+  .headline { font-size: 4.5rem; }
+}
+
+.breakIfDesktop { display: none; }
+@media (min-width: 768px) { .breakIfDesktop { display: block; } }
+
+.highlightWrapper {
+  position: relative;
+  display: inline-block;
+  color: #9333EA;
+  z-index: 1;
+}
+
+.highlightUnderlineShape {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+}
+
+.subtext {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #334155;
+  max-width: 650px;
+  margin: 0 auto 2.5rem;
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+@media (min-width: 768px) {
+  .subtext { font-size: 1.25rem; }
+}
+
+.ctaGroup {
+  margin-bottom: 2rem;
+}
+
+.primaryCta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #9333EA 0%, #7E22CE 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.1rem 2.2rem;
+  border-radius: 9999px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ctaContinuousShimmer {
+  position: absolute;
+  top: 0;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.15), 
+    rgba(255, 255, 255, 0.4), 
+    rgba(255, 255, 255, 0.15), 
+    transparent
+  );
+  transform: skewX(-25deg);
+  z-index: 1;
+  filter: blur(2px);
+}
+
+.ctaPulseGlow {
+  position: absolute;
+  inset: -12px;
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.4) 0%, transparent 70%);
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.buttonGlassBackdrop {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 
+    inset 0px 4px 10px rgba(255,255,255,1), 
+    0 10px 20px rgba(147, 51, 234, 0.15);
+  z-index: 0;
+}
+
+.ctaText, .ctaIconWrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.ctaIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.ctaSheenHover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,1), transparent);
+  transform: skewX(-25deg);
+  z-index: 2;
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+/* Video Mockup - Glassmorphism Core */
+.videoMockup {
+  margin-top: 3rem;
+  width: 100%;
+  max-width: 950px;
+  position: relative;
+  aspect-ratio: 16/9;
+  z-index: 20;
+}
+
+.glassVideoCard {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
+  box-shadow: 
+    0 25px 50px -12px rgba(147, 51, 234, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 0 40px rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Internal glass gradient to make it pop */
+.glassVideoCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 100%);
+  z-index: 0;
+}
+
+.glassShine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.glassVideoCard:hover .glassShine {
+  opacity: 1;
+}
+
+.playInteractionLayer {
+  position: relative;
+  z-index: 2;
+}
+
+.playCircleOuter {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playCircleGlow {
+  position: absolute;
+  inset: -10px;
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.6) 0%, rgba(147, 51, 234, 0) 70%);
+  border-radius: 50%;
+  filter: blur(10px);
+}
+
+.playButtonLarge {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9333EA;
+  box-shadow: 0 10px 25px rgba(147, 51, 234, 0.3);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 2;
+}
+
+.playButtonLarge svg {
+  margin-left: 6px;
+}
+
+.glassVideoCard:hover .playButtonLarge {
+  transform: scale(1.1);
+  background: white;
+}
+
+.floatingTag {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 0.875rem 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255,255,255,0.7);
+  z-index: 30;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tagIconGreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; height: 24px;
+  background: #10B981;
+  color: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+}
+
+.tagIconPurple {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  background: #9333EA;
+  color: white;
+  border-radius: 50%;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(147, 51, 234, 0.4);
+}
+
+.tagText {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #1E293B;
+}
+
+/* Video Preview */
+.videoPreview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  z-index: 1; /* Below the play button layer but above the glass card background */
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.glassVideoCard:hover .videoPreview {
+  opacity: 1;
+}
+
+/* Video Modal Styles */
+.videoModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.videoModalContent {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  max-height: 90vh;
+  background: #000;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  aspect-ratio: 9/16;
+}
+
+.videoModalPlayer {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.closeModalButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.closeModalButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}

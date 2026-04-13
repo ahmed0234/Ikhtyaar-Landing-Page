@@ -1,0 +1,104 @@
+"use client";
+
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import TestimonialCard from "./TestimonialCard";
+import styles from "./Testimonials.module.css";
+
+const testimonialsData = [
+  {
+    name: "Savannah",
+    role: "COO, JUST LEADZ",
+    avatar: "https://i.pravatar.cc/150?u=savannah",
+    stars: 5,
+    text: "We were running Google Ads before but not seeing consistent results. After working with Ikhtiyaar, everything became more structured and we started getting regular inbound calls without increasing our budget. It finally feels predictable."
+  },
+  {
+    name: "Samantha Shakira Clarke",
+    role: "PERSONAL TRAINER",
+    avatar: "https://i.pravatar.cc/150?u=samantha",
+    stars: 5,
+    text: "Before this, most of our work came from referrals and word of mouth. Now we're actually showing up on Google and getting calls weekly. It's helped us stay busy even during slower months, which wasn't the case before."
+  },
+  {
+    name: "Micheal Swisher",
+    role: "OWNER, SWISHER CAPITAL",
+    avatar: "https://i.pravatar.cc/150?u=micheal",
+    stars: 5,
+    text: "We had tried cold email before with very little success. The approach here was completely different — better targeting and messaging. We're now getting replies from the right people and booking qualified calls regularly."
+  },
+  {
+    name: "Isiah Mccullum",
+    role: "OWNER, PRISTINECLEAN PROS",
+    avatar: "https://i.pravatar.cc/150?u=isiah",
+    stars: 4,
+    text: "Our Meta ads used to get engagement but not many sales. The team reworked our strategy and creatives, and now we're seeing better conversions and more consistent performance across campaigns."
+  },
+  {
+    name: "Isabeau Miller",
+    role: "OWNER, BECKON HOMES",
+    avatar: "https://i.pravatar.cc/150?u=isabeau",
+    stars: 5,
+    text: "We didn't realize how much opportunity we were missing on search. After the SEO work, we started ranking for important keywords and saw a steady increase in inquiries. It's been a solid long-term investment."
+  },
+  {
+    name: "Dallin Cottle",
+    role: "OWNER, ROAR MEDIA",
+    avatar: "https://i.pravatar.cc/150?u=dallin",
+    stars: 5,
+    text: "The biggest change for us wasn't just more leads, but how those leads were handled. The follow-up system made everything smoother, and we're now converting more of the inquiries we get into actual clients."
+  }
+];
+
+export default function Testimonials() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "center center"]
+  });
+
+  // Immersive 3D Scroll Calculations
+  const rotateX = useTransform(scrollYProgress, [0, 1], [40, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.85, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [200, 0]);
+
+  return (
+    <section className={styles.section} ref={containerRef}>
+      <div className={styles.ambientBlob1}></div>
+      <div className={styles.ambientBlob2}></div>
+
+      <motion.div 
+        className={styles.headerContainer}
+        style={{ opacity, y }}
+      >
+        <div className={styles.starsTop}>
+          {[...Array(5)].map((_, i) => (
+             <svg key={i} width="28" height="28" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+             </svg>
+          ))}
+        </div>
+        <h2 className={styles.title}>Real Businesses. Real<br/>Growth. Real Results.</h2>
+        <p className={styles.subtitle}>With our services</p>
+      </motion.div>
+
+      <motion.div 
+        className={styles.gridContainer}
+        style={{
+          rotateX,
+          scale,
+          opacity,
+          y
+        }}
+      >
+        <div className={styles.grid}>
+          {testimonialsData.map((t, idx) => (
+            <TestimonialCard key={idx} {...t} />
+          ))}
+        </div>
+      </motion.div>
+    </section>
+  );
+}
