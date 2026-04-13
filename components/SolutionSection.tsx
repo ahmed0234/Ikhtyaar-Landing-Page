@@ -25,18 +25,34 @@ const child = {
   },
 };
 
-const SplitText = ({ children }: { children: string }) => {
+const SplitText = ({ children }: { children: any }) => {
+  const childrenString = Array.isArray(children) ? children.join("") : (typeof children === "string" ? children : "");
+  const parts = childrenString.match(/\S+|\s+/g) || [];
+  let charIndex = 0;
   return (
     <>
-      {children.split("").map((char, i) => (
-        <motion.span
-          key={i}
-          variants={child}
-          style={{ display: "inline-block", whiteSpace: "pre" }}
-        >
-          {char}
-        </motion.span>
-      ))}
+      {parts.map((part, i) => {
+        if (/\s+/.test(part)) {
+          return <span key={`space-${i}`} style={{ display: "inline" }}>{part}</span>;
+        }
+        return (
+          <span key={`word-${i}`} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+            {part.split("").map((char) => {
+              const currentKey = charIndex;
+              charIndex++;
+              return (
+                <motion.span
+                  key={currentKey}
+                  variants={child}
+                  style={{ display: "inline-block" }}
+                >
+                  {char}
+                </motion.span>
+              );
+            })}
+          </span>
+        );
+      })}
     </>
   );
 };

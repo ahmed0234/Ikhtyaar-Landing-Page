@@ -12,6 +12,7 @@ import styles from "./page.module.css";
 import Testimonials from "../components/Testimonials";
 import ProblemSection from "../components/ProblemSection";
 import SolutionSection from "../components/SolutionSection";
+import FinalCTASection from "../components/FinalCTASection";
 
 const heroSplitChild = {
   hidden: { opacity: 0, y: 30, rotateX: -90, transformPerspective: 600 },
@@ -23,17 +24,25 @@ const heroSplitChild = {
   },
 };
 
-const SplitText = ({ children }: { children: string }) => {
-  const parts = children.match(/\S+|\s+/g) || [];
+const SplitText = ({ children }: { children: any }) => {
+  const childrenString = Array.isArray(children) ? children.join("") : (typeof children === "string" ? children : "");
+  const parts = childrenString.match(/\S+|\s+/g) || [];
   let charIndex = 0;
   return (
     <>
       {parts.map((part, i) => {
         if (/\s+/.test(part)) {
-          return <span key={`space-${i}`} style={{ display: "inline" }}>{part}</span>;
+          return (
+            <span key={`space-${i}`} style={{ display: "inline" }}>
+              {part}
+            </span>
+          );
         }
         return (
-          <span key={`word-${i}`} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+          <span
+            key={`word-${i}`}
+            style={{ display: "inline-block", whiteSpace: "nowrap" }}
+          >
             {part.split("").map((char) => {
               const currentKey = charIndex;
               charIndex++;
@@ -76,7 +85,9 @@ const SplitSubtext = ({ text }: { text: string }) => {
           >
             {word}
           </motion.span>
-          {i !== words.length - 1 && <span style={{ display: "inline" }}>&nbsp;</span>}
+          {i !== words.length - 1 && (
+            <span style={{ display: "inline" }}>&nbsp;</span>
+          )}
         </span>
       ))}
     </>
@@ -241,9 +252,14 @@ export default function HeroSection() {
             </motion.div>
 
             <motion.h1 variants={headlineVariants} className={styles.headline}>
-              <SplitText>If You’re Not Showing Up When People Search for Insurance, </SplitText>
+              <SplitText>
+                If You’re Not Showing Up When People Search for Insurance,{" "}
+              </SplitText>
               <br className={styles.breakIfDesktop} />
-              <motion.span className={styles.highlightWrapper} variants={heroSplitChild}>
+              <motion.span
+                className={styles.highlightWrapper}
+                variants={heroSplitChild}
+              >
                 <span className={styles.highlightText}>
                   <SplitText>You’re Losing Clients</SplitText>
                 </span>
@@ -260,7 +276,11 @@ export default function HeroSection() {
                     strokeLinecap="round"
                     initial={{ pathLength: 0 }}
                     animate={{ pathLength: 1 }}
-                    transition={{ duration: 1.5, delay: 1.2, ease: "easeInOut" }}
+                    transition={{
+                      duration: 1.5,
+                      delay: 1.2,
+                      ease: "easeInOut",
+                    }}
                   />
                 </svg>
               </motion.span>
@@ -538,6 +558,7 @@ export default function HeroSection() {
       <Testimonials />
       <ProblemSection />
       <SolutionSection />
+      <FinalCTASection />
     </>
   );
 }

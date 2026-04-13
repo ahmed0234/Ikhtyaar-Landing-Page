@@ -24,9 +24,11 @@ export const righteous = Righteous({
   weight: "400",
 });
 
+import SmoothScroll from "@/components/SmoothScroll";
+
 export const metadata: Metadata = {
   title: "Ikhtyaar",
-  description: "Ikhtyaar landing page",
+  description: "We run high converting Google Ads for insurance companies",
 };
 
 export default function RootLayout({
@@ -39,12 +41,11 @@ export default function RootLayout({
       lang="en"
       className={`${bebasNeue.variable} ${geistSans.variable} ${geistMono.variable}  h-full antialiased`}
     >
-      <link
-        href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,501,700&display=swap"
-        rel="stylesheet"
-      />
+      
 
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }
