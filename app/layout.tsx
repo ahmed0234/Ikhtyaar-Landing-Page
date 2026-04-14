@@ -25,6 +25,7 @@ export const righteous = Righteous({
 });
 
 import SmoothScroll from "@/components/SmoothScroll";
+import CustomCursor from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
   title: "Ikhtyaar",
@@ -44,6 +45,7 @@ export default function RootLayout({
       
 
       <body className="min-h-full flex flex-col">
+        <CustomCursor />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

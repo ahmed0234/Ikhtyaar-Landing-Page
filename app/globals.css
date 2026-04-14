@@ -57,3 +57,17 @@ html.lenis body {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+
+/* Custom Cursor Hiding */
+@media (pointer: fine) {
+  body, 
+  a, 
+  button, 
+  [role="button"], 
+  .cursor-pointer, 
+  input, 
+  textarea, 
+  select {
+    cursor: none !important;
+  }
+}
