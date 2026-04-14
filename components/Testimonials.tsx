@@ -9,42 +9,42 @@ const testimonialsData = [
   {
     name: "Savannah",
     role: "COO, JUST LEADZ",
-    avatar: "https://i.pravatar.cc/150?u=savannah",
+    avatar: "/Clients/7.png",
     stars: 5,
     text: "We were running Google Ads before but not seeing consistent results. After working with Ikhtiyaar, everything became more structured and we started getting regular inbound calls without increasing our budget. It finally feels predictable."
   },
   {
     name: "Samantha Shakira Clarke",
     role: "PERSONAL TRAINER",
-    avatar: "https://i.pravatar.cc/150?u=samantha",
+    avatar: "/Clients/6.png",
     stars: 5,
     text: "Before this, most of our work came from referrals and word of mouth. Now we're actually showing up on Google and getting calls weekly. It's helped us stay busy even during slower months, which wasn't the case before."
   },
   {
     name: "Micheal Swisher",
     role: "OWNER, SWISHER CAPITAL",
-    avatar: "https://i.pravatar.cc/150?u=micheal",
+    avatar: "/Clients/5.jpeg",
     stars: 5,
     text: "We had tried cold email before with very little success. The approach here was completely different — better targeting and messaging. We're now getting replies from the right people and booking qualified calls regularly."
   },
   {
     name: "Isiah Mccullum",
     role: "OWNER, PRISTINECLEAN PROS",
-    avatar: "https://i.pravatar.cc/150?u=isiah",
+    avatar: "/Clients/4.png",
     stars: 4,
     text: "Our Meta ads used to get engagement but not many sales. The team reworked our strategy and creatives, and now we're seeing better conversions and more consistent performance across campaigns."
   },
   {
     name: "Isabeau Miller",
     role: "OWNER, BECKON HOMES",
-    avatar: "https://i.pravatar.cc/150?u=isabeau",
+    avatar: "/Clients/3.png",
     stars: 5,
     text: "We didn't realize how much opportunity we were missing on search. After the SEO work, we started ranking for important keywords and saw a steady increase in inquiries. It's been a solid long-term investment."
   },
   {
     name: "Dallin Cottle",
     role: "OWNER, ROAR MEDIA",
-    avatar: "https://i.pravatar.cc/150?u=dallin",
+    avatar: "/Clients/2.png",
     stars: 5,
     text: "The biggest change for us wasn't just more leads, but how those leads were handled. The follow-up system made everything smoother, and we're now converting more of the inquiries we get into actual clients."
   }
@@ -102,7 +102,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className={styles.section} ref={containerRef}>
+    <section className={styles.section} ref={containerRef} id="results">
       <div className={styles.ambientBlob1}></div>
       <div className={styles.ambientBlob2}></div>
 

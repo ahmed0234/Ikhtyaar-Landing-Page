@@ -164,7 +164,7 @@ export default function ProblemSection() {
           >
             <p className={styles.summaryText}>
               So even when leads come in... <br/>
-              <span style={{ color: "#9333EA" }}>They don't convert consistently.</span>
+              <span style={{ color: "#2563EB" }}>They don't convert consistently.</span>
             </p>
           </motion.div>
         </div>
@@ -184,9 +184,9 @@ export default function ProblemSection() {
               preserveAspectRatio="none"
             >
               {/* Grid Lines */}
-              <path d="M0 250 L500 250" stroke="rgba(147, 51, 234, 0.1)" strokeWidth="2" strokeDasharray="5 5" />
-              <path d="M0 150 L500 150" stroke="rgba(147, 51, 234, 0.1)" strokeWidth="2" strokeDasharray="5 5" />
-              <path d="M0 50 L500 50" stroke="rgba(147, 51, 234, 0.1)" strokeWidth="2" strokeDasharray="5 5" />
+              <path d="M0 250 L500 250" stroke="rgba(37, 99, 235, 0.1)" strokeWidth="2" strokeDasharray="5 5" />
+              <path d="M0 150 L500 150" stroke="rgba(37, 99, 235, 0.1)" strokeWidth="2" strokeDasharray="5 5" />
+              <path d="M0 50 L500 50" stroke="rgba(37, 99, 235, 0.1)" strokeWidth="2" strokeDasharray="5 5" />
               
               {/* Growth Curve */}
               <path 
@@ -198,7 +198,7 @@ export default function ProblemSection() {
               />
               <defs>
                 <linearGradient id="gradientOrange" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#9333EA" />
+                  <stop offset="0%" stopColor="#2563EB" />
                   <stop offset="100%" stopColor="#F97316" />
                 </linearGradient>
               </defs>
@@ -218,8 +218,8 @@ export default function ProblemSection() {
                <span><span className={styles.revenueText}>+240%</span> Google ROI</span>
             </div>
 
-            <div className={`${styles.floatingPill} ${styles.pillPurple}`}>
-               <span style={{ color: "#9333EA", transform: "translateY(-1px)" }}>●</span>
+            <div className={`${styles.floatingPill} ${styles.pillBlue}`}>
+               <span style={{ color: "#2563EB", transform: "translateY(-1px)" }}>●</span>
                <span>Automated Pipeline</span>
             </div>
 

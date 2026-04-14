@@ -101,7 +101,7 @@ const CustomCursor = () => {
               y1={prev.y}
               x2={curr.x}
               y2={curr.y}
-              stroke={isPointer ? "#A855F7" : "#C084FC"}
+              stroke={isPointer ? "#3B82F6" : "#60A5FA"}
               strokeWidth={Math.max(1, (SEGMENTS - i) * 1.2)}
               strokeOpacity={Math.max(0, 0.5 - i * (0.5 / SEGMENTS))}
               strokeLinecap="round"
@@ -135,7 +135,7 @@ const CustomCursor = () => {
           }}
           className="flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 px-4 py-2 rounded-2xl shadow-2xl"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-purple-700 animate-pulse" />
+          <div className="w-1.5 h-1.5 rounded-full bg-blue-700 animate-pulse" />
           <span className="text-[13px] font-medium tracking-wide text-black whitespace-nowrap">
             View Case
           </span>
@@ -164,7 +164,7 @@ const CustomCursor = () => {
           translateX: "-50%",
           translateY: "-50%",
         }}
-        className="w-12 h-12 bg-purple-500/10 rounded-full blur-[10px]"
+        className="w-12 h-12 bg-blue-500/10 rounded-full blur-[10px]"
       />
     </div>
   );

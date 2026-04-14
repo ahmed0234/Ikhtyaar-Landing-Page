@@ -6,16 +6,21 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: white;
   color: black;
+  scroll-behavior: smooth;
 }
 
 .satoshi {
   font-family: "Satoshi", sans-serif;
 }
 
-/* Custom Purple Scrollbar */
+/* Custom Blue Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -25,14 +30,14 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #9333EA;
+  background: #2563eb;
   border-radius: 10px;
   border: 3px solid transparent;
   background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #7E22CE;
+  background: #1d4ed8;
   background-clip: content-box;
 }
 
@@ -60,13 +65,13 @@ html.lenis body {
 
 /* Custom Cursor Hiding */
 @media (pointer: fine) {
-  body, 
-  a, 
-  button, 
-  [role="button"], 
-  .cursor-pointer, 
-  input, 
-  textarea, 
+  body,
+  a,
+  button,
+  [role="button"],
+  .cursor-pointer,
+  input,
+  textarea,
   select {
     cursor: none !important;
   }

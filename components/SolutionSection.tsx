@@ -59,7 +59,7 @@ const SplitText = ({ children }: { children: any }) => {
 
 export default function SolutionSection() {
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="about">
       <motion.div
         className={styles.container}
         initial="hidden"

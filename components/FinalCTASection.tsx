@@ -5,6 +5,19 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import styles from "./FinalCTASection.module.css";
 import { TrendingUp, Ban, CheckCircle, ArrowRight } from "lucide-react";
 
+const COMPANIES = [
+  "/companies/Casey Insurance.jpg",
+  "/companies/Hiscox.png",
+  "/companies/Pristine Clean.png",
+  "/companies/Ridgewell Colorado logo.png",
+  "/companies/SINY Dermatology.png",
+  "/companies/Swisher Capital Logo.png",
+  "/companies/blu dental.png",
+  "/companies/bright smile dental.png",
+  "/companies/daio.png",
+  "/companies/wellrite.jpg",
+];
+
 const revealChild = {
   hidden: { opacity: 0, y: 30, rotateX: -90, transformPerspective: 600 },
   visible: {
@@ -16,17 +29,28 @@ const revealChild = {
 };
 
 const SplitText = ({ children }: { children: any }) => {
-  const childrenString = Array.isArray(children) ? children.join("") : (typeof children === "string" ? children : "");
+  const childrenString = Array.isArray(children)
+    ? children.join("")
+    : typeof children === "string"
+      ? children
+      : "";
   const parts = childrenString.match(/\S+|\s+/g) || [];
   let charIndex = 0;
   return (
     <>
       {parts.map((part, i) => {
         if (/\s+/.test(part)) {
-          return <span key={`space-${i}`} style={{ display: "inline" }}>{part}</span>;
+          return (
+            <span key={`space-${i}`} style={{ display: "inline" }}>
+              {part}
+            </span>
+          );
         }
         return (
-          <span key={`word-${i}`} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+          <span
+            key={`word-${i}`}
+            style={{ display: "inline-block", whiteSpace: "nowrap" }}
+          >
             {part.split("").map((char) => {
               const currentKey = charIndex;
               charIndex++;
@@ -69,14 +93,22 @@ const SplitSubtext = ({ text }: { text: string }) => {
           >
             {word}
           </motion.span>
-          {i !== words.length - 1 && <span style={{ display: "inline" }}>&nbsp;</span>}
+          {i !== words.length - 1 && (
+            <span style={{ display: "inline" }}>&nbsp;</span>
+          )}
         </span>
       ))}
     </>
   );
 };
 
-function Hover3DCard({ children, glowClass }: { children: React.ReactNode, glowClass: string }) {
+function Hover3DCard({
+  children,
+  glowClass,
+}: {
+  children: React.ReactNode;
+  glowClass: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -122,35 +154,35 @@ function Hover3DCard({ children, glowClass }: { children: React.ReactNode, glowC
 export default function FinalCTASection() {
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1, 
-      transition: { staggerChildren: 0.2, delayChildren: 0.1 } 
-    }
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2, delayChildren: 0.1 },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 40 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { type: "spring", stiffness: 100, damping: 20 } 
-    }
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 100, damping: 20 },
+    },
   };
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="services">
       <div className={styles.blob1}></div>
       <div className={styles.blob2}></div>
       <div className={styles.bgGrid}></div>
 
-      <motion.div 
+      <motion.div
         className={styles.container}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={{
-           hidden: {},
-           visible: { transition: { staggerChildren: 0.1 } }
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.1 } },
         }}
       >
         {/* QUALIFICATION CARDS */}
@@ -161,23 +193,31 @@ export default function FinalCTASection() {
               <TrendingUp size={32} color="#10B981" />
             </div>
             <h3 className={styles.cardTitle}>What this typically turns into</h3>
-            <p className={styles.cardSubtitle}>When implemented correctly, this turns into:</p>
-            
+            <p className={styles.cardSubtitle}>
+              When implemented correctly, this turns into:
+            </p>
+
             <div className={styles.checklist}>
               <div className={styles.checkItem}>
                 <CheckCircle className={styles.checkIconGreen} size={24} />
-                <span className={styles.checkText}>Consistent inbound leads every week</span>
+                <span className={styles.checkText}>
+                  Consistent inbound leads every week
+                </span>
               </div>
               <div className={styles.checkItem}>
                 <CheckCircle className={styles.checkIconGreen} size={24} />
-                <span className={styles.checkText}>Appointments getting booked without chasing</span>
+                <span className={styles.checkText}>
+                  Appointments getting booked without chasing
+                </span>
               </div>
               <div className={styles.checkItem}>
                 <CheckCircle className={styles.checkIconGreen} size={24} />
-                <span className={styles.checkText}>A pipeline you can actually rely on</span>
+                <span className={styles.checkText}>
+                  A pipeline you can actually rely on
+                </span>
               </div>
             </div>
-            
+
             <div className={styles.cardFooterText}>
               Not overnight. Not magic. But controlled, predictable growth.
             </div>
@@ -190,22 +230,28 @@ export default function FinalCTASection() {
             </div>
             <h3 className={styles.cardTitle}>This Is Not for Everyone</h3>
             <p className={styles.cardSubtitle}>This works best if:</p>
-            
+
             <div className={styles.checklist}>
               <div className={styles.checkItem}>
                 <CheckCircle className={styles.checkIconGreen} size={24} />
-                <span className={styles.checkText}>You’re already closing deals</span>
+                <span className={styles.checkText}>
+                  You’re already closing deals
+                </span>
               </div>
               <div className={styles.checkItem}>
                 <CheckCircle className={styles.checkIconGreen} size={24} />
-                <span className={styles.checkText}>You want consistency — not quick wins</span>
+                <span className={styles.checkText}>
+                  You want consistency — not quick wins
+                </span>
               </div>
               <div className={styles.checkItem}>
                 <CheckCircle className={styles.checkIconGreen} size={24} />
-                <span className={styles.checkText}>You can handle more inbound leads</span>
+                <span className={styles.checkText}>
+                  You can handle more inbound leads
+                </span>
               </div>
             </div>
-            
+
             <div className={styles.cardFooterText}>
               If that’s you — this will make sense.
             </div>
@@ -213,66 +259,118 @@ export default function FinalCTASection() {
         </div>
 
         {/* MIDDLE PITCH */}
-        <motion.div 
+        <motion.div
           className={styles.pitchSection}
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.05, delayChildren: 0.4 } }
+            visible: {
+              transition: { staggerChildren: 0.05, delayChildren: 0.4 },
+            },
           }}
         >
           <motion.h2 className={styles.pitchHeadline}>
-            <SplitText>Look, People Are Already Searching for Insurance in Your Area</SplitText>
+            <SplitText>
+              Look, People Are Already Searching for Insurance in Your Area
+            </SplitText>
           </motion.h2>
-          <motion.p 
+          <motion.p
             className={styles.pitchSub}
+            whileHover={{ 
+              scale: 1.02,
+              y: -5
+            }}
+            whileTap={{ scale: 0.98 }}
             variants={{
               hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.04, delayChildren: 1.2 } }
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.04, delayChildren: 1.2 },
+              },
             }}
           >
             <SplitSubtext text="The only question is — do they find you... or your competitor?" />
           </motion.p>
         </motion.div>
 
+        {/* TRUSTED BY SCROLL */}
+        <div className={styles.trustedBySection}>
+          <p className={styles.trustedByLabel}>TRUSTED BY LEADING BRANDS</p>
+          <div className={styles.marqueeContainer}>
+            <div className={styles.marqueeGroup}>
+              {COMPANIES.map((src, idx) => (
+                <div key={`group1-${idx}`} className={styles.marqueeLogoWrapper}>
+                  <img src={src} alt="Trusted Company" className={styles.marqueeLogo} />
+                </div>
+              ))}
+            </div>
+            <div className={styles.marqueeGroup} aria-hidden="true">
+              {COMPANIES.map((src, idx) => (
+                <div key={`group2-${idx}`} className={styles.marqueeLogoWrapper}>
+                  <img src={src} alt="Trusted Company" className={styles.marqueeLogo} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* ULTIMATE BANNER */}
-        <motion.div 
+        <motion.div
           className={styles.ultimateBanner}
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, type: "spring" }}
         >
-          <svg className={styles.bannerBgSvg} width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            className={styles.bannerBgSvg}
+            width="100%"
+            height="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <defs>
-              <pattern id="cubes" width="60" height="60" patternUnits="userSpaceOnUse">
-                <path d="M30 0 L60 15 L60 45 L30 60 L0 45 L0 15 Z" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
-                <path d="M30 30 L60 15 M30 30 L30 60 M30 30 L0 15" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
+              <pattern
+                id="cubes"
+                width="60"
+                height="60"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M30 0 L60 15 L60 45 L30 60 L0 45 L0 15 Z"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.15)"
+                  strokeWidth="1"
+                />
+                <path
+                  d="M30 30 L60 15 M30 30 L30 60 M30 30 L0 15"
+                  stroke="rgba(255,255,255,0.15)"
+                  strokeWidth="1"
+                />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#cubes)" />
           </svg>
-          
+
           <h2 className={styles.bannerText}>
-            Book a call and I’ll show you exactly what’s happening in your market
+            Book a call and I’ll show you exactly what’s happening in your
+            market
           </h2>
-          
+
           <button className={styles.bannerButton}>
             BOOK A CALL <ArrowRight size={20} />
           </button>
         </motion.div>
 
-        <motion.p 
+        <motion.p
           className={styles.bannerFooter}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.8 }}
         >
-          I’ll literally pull up your city, show you who’s getting the leads right now, and where you’re missing out. No pitch. Just clarity.
+          I’ll literally pull up your city, show you who’s getting the leads
+          right now, and where you’re missing out. No pitch. Just clarity.
         </motion.p>
-
       </motion.div>
     </section>
   );
 }
-
