@@ -58,11 +58,48 @@ export default function Testimonials() {
     offset: ["start end", "center center"]
   });
 
-  // Immersive 3D Scroll Calculations
-  const rotateX = useTransform(scrollYProgress, [0, 1], [40, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [0.85, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
-  const y = useTransform(scrollYProgress, [0, 1], [200, 0]);
+  // Softer Container Scroll Calculations
+  const containerRotateX = useTransform(scrollYProgress, [0, 1], [15, 0]);
+  const containerScale = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const headerY = useTransform(scrollYProgress, [0, 1], [100, 0]);
+
+  // Extraordinary Per-Card 3D Fly-In Variants
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15,
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: (idx: number) => ({
+      opacity: 0,
+      rotateX: 60,
+      rotateY: (idx % 3 === 0) ? -45 : (idx % 3 === 2) ? 45 : 0, 
+      rotateZ: (idx % 2 === 0) ? -10 : 10,
+      z: -1200,
+      y: 400,
+      scale: 0.5,
+    }),
+    visible: (idx: number) => ({
+      opacity: 1,
+      rotateX: 0,
+      rotateY: 0,
+      rotateZ: 0,
+      z: 0,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 85,
+        damping: 14,
+        mass: 1.1,
+      }
+    })
+  };
 
   return (
     <section className={styles.section} ref={containerRef}>
@@ -71,7 +108,7 @@ export default function Testimonials() {
 
       <motion.div 
         className={styles.headerContainer}
-        style={{ opacity, y }}
+        style={{ opacity: headerOpacity, y: headerY }}
       >
         <div className={styles.starsTop}>
           {[...Array(5)].map((_, i) => (
@@ -87,17 +124,28 @@ export default function Testimonials() {
       <motion.div 
         className={styles.gridContainer}
         style={{
-          rotateX,
-          scale,
-          opacity,
-          y
+          rotateX: containerRotateX,
+          scale: containerScale,
         }}
       >
-        <div className={styles.grid}>
+        <motion.div 
+          className={styles.grid}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {testimonialsData.map((t, idx) => (
-            <TestimonialCard key={idx} {...t} />
+            <motion.div
+              key={idx}
+              custom={idx}
+              variants={cardVariants}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <TestimonialCard {...t} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   );

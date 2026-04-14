@@ -231,6 +231,112 @@ export default function HeroSection() {
           </motion.button>
         </motion.header>
 
+        {/* Hover/Floating Scene Elements */}
+        {mounted && (
+          <>
+            {/* Google Ads Performance Card */}
+            <motion.div
+              className={`${styles.floatingElement} ${styles.adsCard}`}
+              initial={{ x: -100, y: 150, opacity: 0 }}
+              animate={{ x: 0, y: [150, 130, 150], opacity: 1 }}
+              transition={{
+                x: { type: "spring", stiffness: 50 },
+                y: { repeat: Infinity, duration: 6, ease: "easeInOut" },
+                opacity: { duration: 1 }
+              }}
+              style={{ top: "15%", left: "5%" }}
+            >
+              <div className={styles.adsHeader}>
+                <div className={styles.adsIcon}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="12" y1="20" x2="12" y2="10"></line>
+                    <line x1="18" y1="20" x2="18" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="16"></line>
+                  </svg>
+                </div>
+                <div className={styles.adsTitleContainer}>
+                  <span className={styles.adsTitle}>Auto Insurance Ads</span>
+                  <div className={styles.adsStatus}>
+                    <div className={styles.adsStatusDot}></div> Active Campaign
+                  </div>
+                </div>
+              </div>
+              <div className={styles.adsStats}>
+                <div className={styles.adsStatItem}>
+                  <span className={styles.adsStatLabel}>ROAS</span>
+                  <span className={`${styles.adsStatValue} ${styles.adsStatValueHighlight}`}>+320%</span>
+                </div>
+                <div className={styles.adsStatItem}>
+                  <span className={styles.adsStatLabel}>CPA</span>
+                  <span className={styles.adsStatValue}>$12.50</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Growth Chart Card */}
+            <motion.div
+              className={`${styles.floatingElement} ${styles.growthCard}`}
+              initial={{ x: 100, y: 180, opacity: 0 }}
+              animate={{ x: 0, y: [180, 200, 180], opacity: 1 }}
+              transition={{
+                x: { type: "spring", stiffness: 50 },
+                y: { repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 },
+                opacity: { duration: 1 }
+              }}
+              style={{ top: "25%", right: "6%" }}
+            >
+              <div className={styles.growthBarContainer}>
+                <div className={`${styles.growthBar} ${styles.growthBar1}`}></div>
+                <div className={`${styles.growthBar} ${styles.growthBar2}`}></div>
+                <div className={`${styles.growthBar} ${styles.growthBar3}`}></div>
+                <div className={`${styles.growthBar} ${styles.growthBar4}`}></div>
+              </div>
+              <div className={styles.growthTextContainer}>
+                <span className={styles.growthValue}>+450%</span>
+                <span className={styles.growthLabel}>Traffic</span>
+              </div>
+            </motion.div>
+
+            {/* Client Booked Card */}
+            <motion.div
+              className={`${styles.floatingElement} ${styles.clientCard}`}
+              initial={{ x: -80, y: 550, opacity: 0 }}
+              animate={{ x: 0, y: [550, 530, 550], opacity: 1 }}
+              transition={{
+                x: { type: "spring", stiffness: 40 },
+                y: { repeat: Infinity, duration: 5.5, ease: "easeInOut", delay: 0.5 },
+                opacity: { duration: 1 }
+              }}
+              style={{ top: "65%", left: "4%" }}
+            >
+              <div className={styles.clientAvatar}>JD</div>
+              <div className={styles.clientInfo}>
+                <span className={styles.clientName}>John Doe</span>
+                <span className={styles.clientAction}>Booked a Call 📞</span>
+              </div>
+            </motion.div>
+
+            {/* Lead Notification Card */}
+            <motion.div
+              className={`${styles.floatingElement} ${styles.clientCard}`}
+              initial={{ x: 80, y: 600, opacity: 0 }}
+              animate={{ x: 0, y: [600, 580, 600], opacity: 1 }}
+              transition={{
+                x: { type: "spring", stiffness: 45 },
+                y: { repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 1.2 },
+                opacity: { duration: 1 }
+              }}
+              style={{ top: "70%", right: "4%" }}
+            >
+              <div className={styles.clientAvatar} style={{ background: 'linear-gradient(135deg, #10B981, #3B82F6)' }}>SJ</div>
+              <div className={styles.clientInfo}>
+                <span className={styles.clientName}>Sarah Jenkins</span>
+                <span className={styles.clientAction}>New High-Intent Lead ✨</span>
+              </div>
+            </motion.div>
+          </>
+        )}
+
         {/* Main Content Area */}
         <main className={styles.content}>
           <motion.div
