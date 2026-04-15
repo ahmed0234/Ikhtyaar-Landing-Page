@@ -5,19 +5,6 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import styles from "./FinalCTASection.module.css";
 import { TrendingUp, Ban, CheckCircle, ArrowRight } from "lucide-react";
 
-const COMPANIES = [
-  "/companies/Casey Insurance.jpg",
-  "/companies/Hiscox.png",
-  "/companies/Pristine Clean.png",
-  "/companies/Ridgewell Colorado logo.png",
-  "/companies/SINY Dermatology.png",
-  "/companies/Swisher Capital Logo.png",
-  "/companies/blu dental.png",
-  "/companies/bright smile dental.png",
-  "/companies/daio.png",
-  "/companies/wellrite.jpg",
-];
-
 const revealChild = {
   hidden: { opacity: 0, y: 30, rotateX: -90, transformPerspective: 600 },
   visible: {
@@ -275,9 +262,9 @@ export default function FinalCTASection() {
           </motion.h2>
           <motion.p
             className={styles.pitchSub}
-            whileHover={{ 
+            whileHover={{
               scale: 1.02,
-              y: -5
+              y: -5,
             }}
             whileTap={{ scale: 0.98 }}
             variants={{
@@ -292,28 +279,8 @@ export default function FinalCTASection() {
           </motion.p>
         </motion.div>
 
-        {/* TRUSTED BY SCROLL */}
-        <div className={styles.trustedBySection}>
-          <p className={styles.trustedByLabel}>TRUSTED BY LEADING BRANDS</p>
-          <div className={styles.marqueeContainer}>
-            <div className={styles.marqueeGroup}>
-              {COMPANIES.map((src, idx) => (
-                <div key={`group1-${idx}`} className={styles.marqueeLogoWrapper}>
-                  <img src={src} alt="Trusted Company" className={styles.marqueeLogo} />
-                </div>
-              ))}
-            </div>
-            <div className={styles.marqueeGroup} aria-hidden="true">
-              {COMPANIES.map((src, idx) => (
-                <div key={`group2-${idx}`} className={styles.marqueeLogoWrapper}>
-                  <img src={src} alt="Trusted Company" className={styles.marqueeLogo} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
         {/* ULTIMATE BANNER */}
+        <a href="https://zcal.co/ikhtiyaar/discoverycall" target="_blank">
         <motion.div
           className={styles.ultimateBanner}
           initial={{ opacity: 0, scale: 0.95 }}
@@ -349,16 +316,18 @@ export default function FinalCTASection() {
             </defs>
             <rect width="100%" height="100%" fill="url(#cubes)" />
           </svg>
-
-          <h2 className={styles.bannerText}>
-            Book a call and I’ll show you exactly what’s happening in your
-            market
-          </h2>
+          <a href="https://zcal.co/ikhtiyaar/discoverycall" target="_blank">
+            <h2 className={styles.bannerText}>
+              Book a call and I’ll show you exactly what’s happening in your
+              market
+            </h2>
+          </a>
 
           <button className={styles.bannerButton}>
             BOOK A CALL <ArrowRight size={20} />
           </button>
         </motion.div>
+        </a>
 
         <motion.p
           className={styles.bannerFooter}

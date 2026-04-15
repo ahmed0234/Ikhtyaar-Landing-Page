@@ -17,7 +17,7 @@ const problems = [
   {
     icon: LineChart,
     title: "Their pipeline isn't predictable",
-  }
+  },
 ];
 
 // Interactive 3D Card
@@ -114,7 +114,12 @@ function Hover3DPortal({ children }: { children: React.ReactNode }) {
       initial={{ opacity: 0, scale: 0.9, y: 30 }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
+      transition={{
+        duration: 0.8,
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+      }}
     >
       {children}
     </motion.div>
@@ -126,20 +131,20 @@ export default function ProblemSection() {
     <section className={styles.section} id="problem">
       <div className={styles.ambientGlow}></div>
       <div className={styles.container}>
-        
         {/* Left Interactive Column */}
         <div className={styles.leftColumn}>
-          <motion.h2 
+          <motion.h2
             className={styles.headline}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            Spending More on Ads, But Seeing <span style={{ color: "#F97316" }}>Less Return?</span>
+            Spending More on Ads, But Seeing{" "}
+            <span style={{ color: "#F97316" }}>Less Return?</span>
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className={styles.subheadline}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -148,14 +153,14 @@ export default function ProblemSection() {
           >
             Most insurance agencies struggle because:
           </motion.p>
-          
+
           <div className={styles.cardsWrapper}>
             {problems.map((item, idx) => (
-               <Hover3DCard key={idx} item={item} index={idx} />
+              <Hover3DCard key={idx} item={item} index={idx} />
             ))}
           </div>
 
-          <motion.div 
+          <motion.div
             className={styles.summaryContainer}
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -163,8 +168,10 @@ export default function ProblemSection() {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <p className={styles.summaryText}>
-              So even when leads come in... <br/>
-              <span style={{ color: "#2563EB" }}>They don't convert consistently.</span>
+              So even when leads come in... <br />
+              <span style={{ color: "#2563EB" }}>
+                They don't convert consistently.
+              </span>
             </p>
           </motion.div>
         </div>
@@ -176,25 +183,40 @@ export default function ProblemSection() {
             <div className={styles.graphBackdrop}></div>
 
             {/* Simulated 3D SVG Line Chart built-in */}
-            <svg 
-              className={styles.growthLineContainer} 
-              viewBox="0 0 500 300" 
-              fill="none" 
+            <svg
+              className={styles.growthLineContainer}
+              viewBox="0 0 500 300"
+              fill="none"
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="none"
             >
               {/* Grid Lines */}
-              <path d="M0 250 L500 250" stroke="rgba(37, 99, 235, 0.1)" strokeWidth="2" strokeDasharray="5 5" />
-              <path d="M0 150 L500 150" stroke="rgba(37, 99, 235, 0.1)" strokeWidth="2" strokeDasharray="5 5" />
-              <path d="M0 50 L500 50" stroke="rgba(37, 99, 235, 0.1)" strokeWidth="2" strokeDasharray="5 5" />
-              
+              <path
+                d="M0 250 L500 250"
+                stroke="rgba(37, 99, 235, 0.1)"
+                strokeWidth="2"
+                strokeDasharray="5 5"
+              />
+              <path
+                d="M0 150 L500 150"
+                stroke="rgba(37, 99, 235, 0.1)"
+                strokeWidth="2"
+                strokeDasharray="5 5"
+              />
+              <path
+                d="M0 50 L500 50"
+                stroke="rgba(37, 99, 235, 0.1)"
+                strokeWidth="2"
+                strokeDasharray="5 5"
+              />
+
               {/* Growth Curve */}
-              <path 
+              <path
                 className={styles.growthLinePath}
-                d="M 10 280 C 100 280, 150 180, 250 160 C 350 140, 400 80, 490 20" 
-                stroke="url(#gradientOrange)" 
-                strokeWidth="12" 
-                strokeLinecap="round" 
+                d="M 10 280 C 100 280, 150 180, 250 160 C 350 140, 400 80, 490 20"
+                stroke="url(#gradientOrange)"
+                strokeWidth="12"
+                strokeLinecap="round"
               />
               <defs>
                 <linearGradient id="gradientOrange" x1="0" y1="0" x2="1" y2="0">
@@ -214,18 +236,20 @@ export default function ProblemSection() {
 
             {/* Floating 3D Pills */}
             <div className={`${styles.floatingPill} ${styles.pillOrange}`}>
-               <TrendingUp color="#F97316" size={20} strokeWidth={3} />
-               <span><span className={styles.revenueText}>+240%</span> Google ROI</span>
+              <TrendingUp color="#F97316" size={20} strokeWidth={3} />
+              <span>
+                <span className={styles.revenueText}>+240%</span> Google ROI
+              </span>
             </div>
 
             <div className={`${styles.floatingPill} ${styles.pillBlue}`}>
-               <span style={{ color: "#2563EB", transform: "translateY(-1px)" }}>●</span>
-               <span>Automated Pipeline</span>
+              <span style={{ color: "#2563EB", transform: "translateY(-1px)" }}>
+                ●
+              </span>
+              <span>Automated Pipeline</span>
             </div>
-
           </div>
         </Hover3DPortal>
-
       </div>
     </section>
   );

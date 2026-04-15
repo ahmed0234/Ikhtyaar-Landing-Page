@@ -13,6 +13,7 @@ import Testimonials from "../components/Testimonials";
 import ProblemSection from "../components/ProblemSection";
 import SolutionSection from "../components/SolutionSection";
 import FinalCTASection from "../components/FinalCTASection";
+import Scroller from "@/components/Scroller";
 
 const heroSplitChild = {
   hidden: { opacity: 0, y: 30, rotateX: -90, transformPerspective: 600 },
@@ -189,50 +190,34 @@ export default function HeroSection() {
 
         {/* Navigation Layer */}
         <motion.header
-          className={styles.header}
+          className={`${styles.header}  h-28`}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <div className={styles.logo}>
             <div className={styles.logoIcon}>
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4 15L10 9L15 14L21 8"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M14 8H21V15"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <a href="https://ikhtiyaar.com/" target="_blank">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  {/* Left vertical pillar */}
+                  <path d="M2 2h7v20H2V2z" />
+                  {/* Top slanted arm */}
+                  <path d="M10 10l8-8h5v6l-8 8h-5v-6z" />
+                  {/* Bottom right block */}
+                  <path d="M16 16h7v7h-7v-7z" />
+                </svg>
+              </a>
             </div>
-            <span className={styles.logoText}>Ikhtyaar</span>
+            <a href="https://ikhtiyaar.com/" target="_blank">
+              <img src="/logos/logo1.png" alt="" className="w-24" />
+            </a>
           </div>
-          <nav className={styles.nav}>
-            <a href="#services">Services</a>
-            <a href="#results">Results</a>
-            <a href="#about">About We Do</a>
-          </nav>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={styles.navButton}
-          >
-            Get Started
-          </motion.button>
         </motion.header>
 
         {/* Hover/Floating Scene Elements */}
@@ -253,8 +238,8 @@ export default function HeroSection() {
               <div className={styles.adsHeader}>
                 <div className={styles.adsIcon}>
                   <svg
-                    width="18"
-                    height="18"
+                    width="26"
+                    height="26"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -401,7 +386,7 @@ export default function HeroSection() {
               <div className={styles.glassBadge}>
                 <span className={styles.badgePulse}></span>
                 <span className={styles.badgeText}>
-                  Dominate Google Search Results
+                  Get 10-20 Quotes Right Now
                 </span>
               </div>
             </motion.div>
@@ -441,238 +426,545 @@ export default function HeroSection() {
               </motion.span>
               <SplitText> Every Single Day.</SplitText>
             </motion.h1>
-
-            <motion.p
-              variants={subtextVariants}
-              className={styles.subtext}
-            >
+            {/* 
+            <motion.p variants={subtextVariants} className={styles.subtext}>
               <SplitSubtext text="Watch this short video to see how we help insurance agencies show up on Google and turn those searches into booked calls automatically." />
-            </motion.p>
+            </motion.p> */}
 
-            {/* Video Mockup Area */}
-            <motion.div
-              className={styles.videoMockup}
-              initial={{ opacity: 0, y: 50, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{
-                type: "spring",
-                stiffness: 80,
-                damping: 20,
-                delay: 0.6,
-              }}
-            >
-              <motion.div
-                className={styles.glassVideoCard}
-                whileHover={{ y: -10 }}
-                transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                onClick={() => setIsVideoModalOpen(true)}
-              >
-                <div className={styles.glassShine}></div>
-
-                <video
-                  src="/James.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className={styles.videoPreview}
-                />
-
-                <div className={styles.playInteractionLayer}>
+            {/* Interactive Section (Video + Calendar) */}
+            <div className={styles.interactiveSection}>
+              {/* Left Column: Video + Benefits */}
+              <div className={styles.leftColumnWrapper}>
+                {/* Video Mockup Area */}
+                <motion.div
+                  className={styles.videoMockup}
+                  initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 80,
+                    damping: 20,
+                    delay: 0.6,
+                  }}
+                >
                   <motion.div
-                    className={styles.playCircleOuter}
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{
-                      repeat: Infinity,
-                      duration: 3,
-                      ease: "easeInOut",
-                    }}
+                    className={styles.glassVideoCard}
+                    whileHover={{ y: -10 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                    onClick={() => setIsVideoModalOpen(true)}
                   >
-                    <div className={styles.playCircleGlow}></div>
-                    <div className={styles.playButtonLarge}>
-                      <svg
-                        width="36"
-                        height="36"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
+                    <div className={styles.glassShine}></div>
+
+                    <video
+                      src="/James.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className={styles.videoPreview}
+                    />
+
+                    <div className={styles.playInteractionLayer}>
+                      <motion.div
+                        className={styles.playCircleOuter}
+                        animate={{ scale: [1, 1.1, 1] }}
+                        transition={{
+                          repeat: Infinity,
+                          duration: 3,
+                          ease: "easeInOut",
+                        }}
                       >
-                        <polygon points="8 5 19 12 8 19 8 5"></polygon>
-                      </svg>
+                        <div className={styles.playCircleGlow}></div>
+                        <div className={styles.playButtonLarge}>
+                          <svg
+                            width="36"
+                            height="36"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
+                            <polygon points="8 5 19 12 8 19 8 5"></polygon>
+                          </svg>
+                        </div>
+                      </motion.div>
                     </div>
                   </motion.div>
-                </div>
-              </motion.div>
 
-              {/* Floating Tags for visual flair using Glassmorphism */}
-              <motion.div
-                className={styles.floatingTag}
-                style={{ top: "10%", left: "-6%" }}
-                animate={{ y: [-5, 5, -5] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 4,
-                  ease: "easeInOut",
-                }}
-              >
-                <div className={styles.tagIconGreen}>
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </div>
-                <span className={styles.tagText}>+340% Traffic</span>
-              </motion.div>
-
-              <motion.div
-                className={styles.floatingTag}
-                style={{ bottom: "15%", right: "-6%" }}
-                animate={{ y: [5, -5, 5] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 5,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-              >
-                <div className={styles.tagIconBlue}>⚡</div>
-                <span className={styles.tagText}>High Intent Leads</span>
-              </motion.div>
-            </motion.div>
-            <br />
-            <motion.div variants={itemVariants} className={styles.ctaGroup}>
-              <motion.button
-                className={styles.primaryCta}
-                initial="idle"
-                whileHover="hover"
-                whileTap="tap"
-                variants={{
-                  idle: {
-                    scale: 1,
-                    boxShadow: "0px 10px 30px -5px rgba(37, 99, 235, 0.4)",
-                  },
-                  hover: {
-                    scale: 1.05,
-                    boxShadow:
-                      "0px 30px 60px -12px rgba(37, 99, 235, 0.6), inset 0px 1px 1px rgba(255,255,255,0.8)",
-                  },
-                  tap: { scale: 0.96 },
-                }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              >
-                {/* Continuous Glass Shimmer (Idle Life) */}
-                <motion.div
-                  className={styles.ctaContinuousShimmer}
-                  animate={{
-                    x: ["-100%", "100%"],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
-
-                {/* Glass Morph Backdrop (Hover State) */}
-                <motion.div
-                  className={styles.buttonGlassBackdrop}
-                  variants={{
-                    idle: { opacity: 0, scale: 0.95 },
-                    hover: { opacity: 1, scale: 1 },
-                  }}
-                  transition={{ duration: 0.2 }}
-                />
-
-                <motion.span
-                  className={styles.ctaIconWrapper}
-                  variants={{
-                    idle: {
-                      backgroundColor: "rgba(255,255,255,0.2)",
-                      color: "#FFFFFF",
-                    },
-                    hover: {
-                      backgroundColor: "rgba(37, 99, 235, 0.15)",
-                      color: "#2563EB",
-                    },
-                  }}
-                  transition={{ duration: 0.15 }}
-                >
-                  <motion.span
-                    animate={{ rotate: [0, 15, -15, 0] }}
+                  {/* Floating Tags for visual flair using Glassmorphism */}
+                  <motion.div
+                    className={styles.floatingTag}
+                    style={{ top: "10%", left: "-6%" }}
+                    animate={{ y: [-5, 5, -5] }}
                     transition={{
-                      duration: 4,
                       repeat: Infinity,
+                      duration: 4,
                       ease: "easeInOut",
                     }}
                   >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <rect
-                        x="3"
-                        y="4"
-                        width="18"
-                        height="18"
-                        rx="2"
-                        ry="2"
-                      ></rect>
-                      <line x1="16" y1="2" x2="16" y2="6"></line>
-                      <line x1="8" y1="2" x2="8" y2="6"></line>
-                      <line x1="3" y1="10" x2="21" y2="10"></line>
+                    <div className={styles.tagIconGreen}>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                    <span className={styles.tagText}>+340% Traffic</span>
+                  </motion.div>
+
+                  <motion.div
+                    className={styles.floatingTag}
+                    style={{ bottom: "15%", right: "-6%" }}
+                    animate={{ y: [5, -5, 5] }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 5,
+                      ease: "easeInOut",
+                      delay: 1,
+                    }}
+                  >
+                    <div className={styles.tagIconBlue}>⚡</div>
+                    <span className={styles.tagText}>High Intent Leads</span>
+                  </motion.div>
+
+                  {/* Animated Pointer Arrows - Left */}
+                  <motion.div
+                    className={`${styles.pointerArrow} ${styles.pointerLeft}`}
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ 
+                      opacity: [0.7, 1, 0.7],
+                      y: [-8, 8, -8]
+                    }}
+                    viewport={{ once: false }}
+                    transition={{
+                      duration: 4.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    style={{ left: "-120px", top: "-200px", width: "240px", height: "280px" }}
+                  >
+                    <svg width="100%" height="100%" viewBox="0 0 240 280" fill="none" overflow="visible" xmlns="http://www.w3.org/2000/svg">
+                      <defs>
+                        <linearGradient id="flowGradLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="rgba(37,99,235,0)" />
+                          <stop offset="100%" stopColor="#2563EB" />
+                        </linearGradient>
+                      </defs>
+                      
+                      {/* Faint ambient track */}
+                      <path 
+                        d="M 40 40 C 180 40, 200 150, 210 240" 
+                        stroke="#2563EB" 
+                        strokeWidth="2" 
+                        opacity="0.15" 
+                        strokeLinecap="round" 
+                        fill="none" 
+                      />
+                      
+                      {/* Breathing organic tail that expands/contracts, anchored at tip */}
+                      <motion.path 
+                        d="M 40 40 C 180 40, 200 150, 210 240" 
+                        stroke="url(#flowGradLeft)" 
+                        strokeWidth="5" 
+                        strokeLinecap="round" 
+                        fill="none" 
+                        initial={{ pathLength: 0.1 }}
+                        animate={{ 
+                          pathLength: [0.1, 1, 0.1],
+                          opacity: [1, 0.5, 1]
+                        }}
+                        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                      />
+
+                      {/* Directional energy core dashed flow */}
+                      <motion.path 
+                        d="M 40 40 C 180 40, 200 150, 210 240" 
+                        stroke="#3B82F6" 
+                        strokeWidth="2.5" 
+                        strokeLinecap="round" 
+                        fill="none" 
+                        strokeDasharray="6 26"
+                        initial={{ strokeDashoffset: 0 }}
+                        animate={{ strokeDashoffset: -128 }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                        opacity="0.9"
+                      />
+
+                      {/* Floating Arrow Head */}
+                      <motion.path 
+                        d="M 192 202 L 210 240 L 220 199" 
+                        stroke="#2563EB" 
+                        strokeWidth="4" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        fill="none" 
+                        animate={{ x: [-2, 3, -2], y: [-2, 3, -2], scale: [0.95, 1.05, 0.95] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      />
                     </svg>
-                  </motion.span>
-                </motion.span>
+                  </motion.div>
 
-                <motion.span
-                  className={styles.ctaText}
-                  variants={{
-                    idle: { color: "#FFFFFF" },
-                    hover: { color: "#1E3A8A" },
-                  }}
-                  transition={{ duration: 0.15 }}
+                  {/* Animated Pointer Arrows - Right */}
+                  <motion.div
+                    className={`${styles.pointerArrow} ${styles.pointerRight}`}
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ 
+                      opacity: [0.7, 1, 0.7],
+                      y: [8, -8, 8]
+                    }}
+                    viewport={{ once: false }}
+                    transition={{
+                      duration: 5.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 0.5
+                    }}
+                    style={{ right: "-90px", top: "-100px", width: "240px", height: "180px" }}
+                  >
+                    <svg width="100%" height="100%" viewBox="0 0 240 280" fill="none" overflow="visible" xmlns="http://www.w3.org/2000/svg">
+                      <defs>
+                        <linearGradient id="flowGradRight" x1="100%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stopColor="rgba(16,185,129,0)" />
+                          <stop offset="100%" stopColor="#10B981" />
+                        </linearGradient>
+                      </defs>
+                      
+                      {/* Faint ambient track - Green for variety since the tag is Blue/Green */}
+                      <path 
+                        d="M 200 40 C 60 40, 40 150, 30 240" 
+                        stroke="#0095ff" 
+                        strokeWidth="2" 
+                        opacity="0.15" 
+                        strokeLinecap="round" 
+                        fill="none" 
+                      />
+                      
+                      {/* Breathing organic tail */}
+                      <motion.path 
+                        d="M 200 40 C 60 40, 40 150, 30 240" 
+                        stroke="#0095ff" 
+                        strokeWidth="5" 
+                        strokeLinecap="round" 
+                        fill="none" 
+                        initial={{ pathLength: 0.15 }}
+                        animate={{ 
+                          pathLength: [0.15, 1, 0.15],
+                          opacity: [1, 0.5, 1]
+                        }}
+                        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                      />
+
+                      {/* Directional energy core dashed flow */}
+                      <motion.path 
+                        d="M 200 40 C 60 40, 40 150, 30 240" 
+                        stroke="#2878ed" 
+                        strokeWidth="2.5" 
+                        strokeLinecap="round" 
+                        fill="none" 
+                        strokeDasharray="6 26"
+                        initial={{ strokeDashoffset: 0 }}
+                        animate={{ strokeDashoffset: -128 }}
+                        transition={{ duration: 1.8, repeat: Infinity, ease: "linear" }}
+                        opacity="0.9"
+                      />
+
+                      {/* Floating Arrow Head */}
+                      <motion.path 
+                        d="M 48 202 L 30 240 L 20 199" 
+                        stroke="#0095ff" 
+                        strokeWidth="4" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        fill="none" 
+                        animate={{ x: [2, -3, 2], y: [-2, 3, -2], scale: [0.95, 1.05, 0.95] }}
+                        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+                      />
+                    </svg>
+                  </motion.div>
+                </motion.div>
+
+                {/* Benefits Section */}
+                <motion.div
+                  className={styles.videoBenefits}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, type: "spring", stiffness: 80 }}
                 >
-                  Book a 15m Discovery Call
-                </motion.span>
+                  <h4 className={styles.videoBenefitsHeader}>
+                    What you'll get on this call:
+                  </h4>
+                  <p className={styles.videoBenefitsSub}>
+                    A custom blueprint to dominate search results.
+                  </p>
 
-                {/* Hover Triggered High-Intensity Sweep */}
-                <motion.div
-                  className={styles.ctaSheenHover}
-                  variants={{
-                    idle: { left: "-100%", opacity: 0 },
-                    hover: { left: "200%", opacity: 1 },
-                  }}
-                  transition={{ duration: 0.7, ease: "circOut" }}
-                />
+                  <div className={styles.benefitItemsGrid}>
+                    <div className={styles.benefitItem}>
+                      <svg
+                        className={styles.benefitIcon}
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                      </svg>
+                      <span>Custom action plan for your agency</span>
+                    </div>
+                    <div className={styles.benefitItem}>
+                      <svg
+                        className={styles.benefitIcon}
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                      </svg>
+                      <span>Exact search volumes in your area</span>
+                    </div>
+                    <div className={styles.benefitItem}>
+                      <svg
+                        className={styles.benefitIcon}
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                      </svg>
+                      <span>Strategy to capture high-intent buyers</span>
+                    </div>
+                    <div className={styles.benefitItem}>
+                      <svg
+                        className={styles.benefitIcon}
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                      </svg>
+                      <span>Review of your competitors' ads</span>
+                    </div>
+                  </div>
+                </motion.div>
 
-                {/* Constant Deep Pulse Glow */}
+                {/* Trust Indicators */}
                 <motion.div
-                  className={styles.ctaPulseGlow}
-                  animate={{
-                    opacity: [0.2, 0.4, 0.2],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-              </motion.button>
-            </motion.div>
+                  className={styles.trustIndicators}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1, type: "spring", stiffness: 80 }}
+                >
+                  <div className={styles.trustAvatars}>
+                    <img src="/Clients/7.png" alt="Client" />
+                    <img src="/Clients/6.png" alt="Client" />
+                    <img src="/Clients/5.jpeg" alt="Client" />
+                    <div className={styles.trustAvatarsMore}>+80</div>
+                  </div>
+                  <div className={styles.trustText}>
+                    <div className={styles.trustStars}>★★★★★</div>
+                    <span>Trusted by 80+ growing insurance agencies</span>
+                  </div>
+                </motion.div>
+
+                <motion.div variants={itemVariants} className={styles.ctaGroup}>
+                  <a
+                    href="https://zcal.co/ikhtiyaar/discoverycall"
+                    target="_blank"
+                  >
+                    <motion.button
+                      className={styles.primaryCta}
+                      initial="idle"
+                      whileHover="hover"
+                      whileTap="tap"
+                      variants={{
+                        idle: {
+                          scale: 1,
+                          boxShadow:
+                            "0px 10px 30px -5px rgba(37, 99, 235, 0.4)",
+                        },
+                        hover: {
+                          scale: 1.05,
+                          boxShadow:
+                            "0px 30px 60px -12px rgba(37, 99, 235, 0.6), inset 0px 1px 1px rgba(255,255,255,0.8)",
+                        },
+                        tap: { scale: 0.96 },
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 25,
+                      }}
+                    >
+                      {/* Continuous Glass Shimmer (Idle Life) */}
+                      <motion.div
+                        className={styles.ctaContinuousShimmer}
+                        animate={{
+                          x: ["-100%", "100%"],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                      />
+
+                      {/* Glass Morph Backdrop (Hover State) */}
+                      <motion.div
+                        className={styles.buttonGlassBackdrop}
+                        variants={{
+                          idle: { opacity: 0, scale: 0.95 },
+                          hover: { opacity: 1, scale: 1 },
+                        }}
+                        transition={{ duration: 0.2 }}
+                      />
+
+                      <motion.span
+                        className={styles.ctaIconWrapper}
+                        variants={{
+                          idle: {
+                            backgroundColor: "rgba(255,255,255,0.2)",
+                            color: "#FFFFFF",
+                          },
+                          hover: {
+                            backgroundColor: "rgba(37, 99, 235, 0.15)",
+                            color: "#2563EB",
+                          },
+                        }}
+                        transition={{ duration: 0.15 }}
+                      >
+                        <motion.span
+                          animate={{ rotate: [0, 15, -15, 0] }}
+                          transition={{
+                            duration: 4,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
+                        >
+                          <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <rect
+                              x="3"
+                              y="4"
+                              width="18"
+                              height="18"
+                              rx="2"
+                              ry="2"
+                            ></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                          </svg>
+                        </motion.span>
+                      </motion.span>
+
+                      <motion.span
+                        className={styles.ctaText}
+                        variants={{
+                          idle: { color: "#FFFFFF" },
+                          hover: { color: "#1E3A8A" },
+                        }}
+                        transition={{ duration: 0.15 }}
+                      >
+                        Book a Free 15m Discovery Call
+                      </motion.span>
+
+                      {/* Hover Triggered High-Intensity Sweep */}
+
+                      <motion.div
+                        className={styles.ctaSheenHover}
+                        variants={{
+                          idle: { left: "-100%", opacity: 0 },
+                          hover: { left: "200%", opacity: 1 },
+                        }}
+                        transition={{ duration: 0.7, ease: "circOut" }}
+                      />
+
+                      {/* Constant Deep Pulse Glow */}
+
+                      <motion.div
+                        className={styles.ctaPulseGlow}
+                        animate={{
+                          opacity: [0.2, 0.4, 0.2],
+                          scale: [1, 1.1, 1],
+                        }}
+                        transition={{
+                          duration: 2.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    </motion.button>
+                  </a>
+                </motion.div>
+              </div>
+
+              {/* Zcal Booking Calendar */}
+              <motion.div
+                className={styles.calendarContainer}
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 80,
+                  damping: 20,
+                  delay: 0.8,
+                }}
+              >
+                <div className={styles.calendarHeader}>
+                  <h3 className={styles.calendarTitle}>
+                    Book Your Free Discovery Call
+                  </h3>
+                  <p className={styles.calendarSubtitle}>
+                    Find a time that works best for you below.
+                  </p>
+                </div>
+                <div className={styles.calendarWidgetWrapper}>
+                  <div className="zcal-inline-widget bg-white text-blue-500 w-full h-full">
+                    <a
+                      href="https://zcal.co/demowork/30min"
+                      className="text-blue-500 bg-white"
+                    >
+                      Discovery Call - Schedule a meeting
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </main>
 
@@ -723,6 +1015,7 @@ export default function HeroSection() {
           )}
         </AnimatePresence>
       </div>
+      <Scroller />
       <Testimonials />
       <ProblemSection />
       <SolutionSection />

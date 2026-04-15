@@ -26,17 +26,28 @@ const child = {
 };
 
 const SplitText = ({ children }: { children: any }) => {
-  const childrenString = Array.isArray(children) ? children.join("") : (typeof children === "string" ? children : "");
+  const childrenString = Array.isArray(children)
+    ? children.join("")
+    : typeof children === "string"
+      ? children
+      : "";
   const parts = childrenString.match(/\S+|\s+/g) || [];
   let charIndex = 0;
   return (
     <>
       {parts.map((part, i) => {
         if (/\s+/.test(part)) {
-          return <span key={`space-${i}`} style={{ display: "inline" }}>{part}</span>;
+          return (
+            <span key={`space-${i}`} style={{ display: "inline" }}>
+              {part}
+            </span>
+          );
         }
         return (
-          <span key={`word-${i}`} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+          <span
+            key={`word-${i}`}
+            style={{ display: "inline-block", whiteSpace: "nowrap" }}
+          >
             {part.split("").map((char) => {
               const currentKey = charIndex;
               charIndex++;
@@ -106,7 +117,9 @@ export default function SolutionSection() {
           transition={{ duration: 0.8, delay: 1.2, type: "spring" }}
           className={styles.ctaWrapper}
         >
-          <button className={styles.ctaButton}>Book the Spot</button>
+          <a href="https://zcal.co/ikhtiyaar/discoverycall" target="_blank">
+            <button className={styles.ctaButton}>Book the Spot</button>
+          </a>
         </motion.div>
       </motion.div>
     </section>
