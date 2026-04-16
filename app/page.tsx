@@ -243,7 +243,7 @@ export default function HeroSection() {
               </svg>
             </div>
             <div className={styles.phoneDetails}>
-              <span className={styles.phoneLabel}>Direct Expert Line</span>
+              <span className={styles.phoneLabel}>Call now</span>
               <a href="tel:2513856294" className={styles.phoneNumber}>
                 (251) 385-6294
               </a>
