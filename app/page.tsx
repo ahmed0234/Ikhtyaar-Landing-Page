@@ -208,6 +208,52 @@ export default function HeroSection() {
               />
             </a>
           </div>
+
+          <div className={styles.growthSignal}>
+            <div className={styles.signalShimmer}></div>
+            <div className={styles.wavePreview}>
+              <svg viewBox="0 0 60 20" fill="none">
+                <path
+                  d="M2 15C10 15 15 5 25 5C35 5 40 15 50 15C55 15 58 10 58 10"
+                  className={styles.wavePath}
+                />
+              </svg>
+            </div>
+            <div className={styles.signalData}>
+              <span className={styles.signalTitle}>Performance Flow</span>
+              <span className={styles.signalMetric}>
+                ROI <span>+42% Average</span>
+              </span>
+            </div>
+          </div>
+
+          <div className={styles.statusWidget}>
+            <div className={styles.pulseContainer}>
+              <div className={styles.pulseDot}></div>
+              <div className={styles.pulseRing}></div>
+            </div>
+            <div className={styles.statusText}>
+              <span className={styles.statusTop}>Optimization Hub</span>
+              <span className={styles.statusBottom}>
+                System <span className={styles.statusLive}>Live</span>
+              </span>
+            </div>
+            <svg
+              width="34"
+              height="14"
+              viewBox="0 0 34 14"
+              fill="none"
+              className={styles.miniGraph}
+            >
+              <path
+                d="M1 12L5 8L9 10L13 4L17 7L21 2L25 5L29 1L33 4"
+                stroke="#10B981"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
         </motion.header>
 
         {/* Hover/Floating Scene Elements */}
