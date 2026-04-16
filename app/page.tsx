@@ -227,32 +227,28 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className={styles.statusWidget}>
-            <div className={styles.pulseContainer}>
-              <div className={styles.pulseDot}></div>
-              <div className={styles.pulseRing}></div>
-            </div>
-            <div className={styles.statusText}>
-              <span className={styles.statusTop}>Optimization Hub</span>
-              <span className={styles.statusBottom}>
-                System <span className={styles.statusLive}>Live</span>
-              </span>
-            </div>
-            <svg
-              width="34"
-              height="14"
-              viewBox="0 0 34 14"
-              fill="none"
-              className={styles.miniGraph}
-            >
-              <path
-                d="M1 12L5 8L9 10L13 4L17 7L21 2L25 5L29 1L33 4"
-                stroke="#10B981"
-                strokeWidth="2"
+          <div className={styles.phoneWidget}>
+            <div className={styles.phoneIconWrapper}>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-              />
-            </svg>
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.26a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+            </div>
+            <div className={styles.phoneDetails}>
+              <span className={styles.phoneLabel}>Direct Expert Line</span>
+              <a href="tel:2513856294" className={styles.phoneNumber}>
+                (251) 385-6294
+              </a>
+            </div>
+            <div className={styles.phoneGlow} />
           </div>
         </motion.header>
 

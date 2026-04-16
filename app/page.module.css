@@ -157,111 +157,132 @@
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
 }
 
-.statusWidget {
-  display: none;
+.phoneWidget {
+  display: flex;
   align-items: center;
-  gap: 0.75rem;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 0.5rem 1rem;
+  gap: 0.9rem;
+  /* Higher contrast blue-tinted glass */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(37, 99, 235, 0.08) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0.6rem 1.4rem;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-  cursor: default;
-  transition: all 0.3s ease;
+  /* More defined 3D border */
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-top: 1px solid rgba(255, 255, 255, 1);
+  border-left: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    0 10px 30px -10px rgba(0, 0, 0, 0.08),
+    0 4px 12px -4px rgba(37, 99, 235, 0.1),
+    inset 0 0 20px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+  /* Sublte continuous float animation */
+  animation: widgetFloat 4s ease-in-out infinite;
+}
+
+@keyframes widgetFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
 }
 
 @media (min-width: 1024px) {
-  .statusWidget { display: flex; }
+  .phoneWidget { display: flex; }
 }
 
-.statusWidget:hover {
-  background: rgba(255, 255, 255, 0.6);
-  border-color: rgba(37, 99, 235, 0.2);
-  transform: translateY(-1px);
+.phoneWidget:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(37, 99, 235, 0.3);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 
+    0 25px 50px -12px rgba(37, 99, 235, 0.2),
+    0 10px 20px -8px rgba(37, 99, 235, 0.15);
+  animation-play-state: paused;
 }
 
-.pulseContainer {
-  position: relative;
-  width: 10px;
-  height: 10px;
-}
-
-.pulseDot {
-  width: 10px;
-  height: 10px;
-  background: #10B981;
+.phoneIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #2563EB, #1D4ED8);
   border-radius: 50%;
+  color: white;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+}
+
+.phoneIconWrapper svg {
+  animation: phoneRinging 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes phoneRinging {
+  0% { transform: scale(1) rotate(0deg); }
+  15% { transform: scale(1.12) rotate(-12deg); }
+  30% { transform: scale(1.12) rotate(12deg); }
+  45% { transform: scale(1.12) rotate(-12deg); }
+  60% { transform: scale(1.12) rotate(12deg); }
+  80% { transform: scale(1.05) rotate(-5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.phoneDetails {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
   position: relative;
   z-index: 2;
 }
 
-.pulseRing {
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  border: 2px solid #10B981;
-  border-radius: 50%;
-  opacity: 0;
-  animation: widgetPulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-@keyframes widgetPulse {
-  0% { transform: scale(0.5); opacity: 0.8; }
-  100% { transform: scale(1.5); opacity: 0; }
-}
-
-.statusText {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
-}
-
-.statusTop {
-  font-size: 0.65rem;
+.phoneLabel {
+  font-size: 0.6rem;
   font-weight: 800;
   color: #64748B;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   margin-bottom: 2px;
 }
 
-.statusBottom {
-  font-size: 0.8rem;
-  font-weight: 700;
+.phoneNumber {
+  font-size: 1.05rem;
+  font-weight: 900;
   color: #1E293B;
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  letter-spacing: -0.01em;
 }
 
-.statusLive {
-  color: #10B981;
-  font-size: 0.7rem;
-  background: rgba(16, 185, 129, 0.1);
-  padding: 1px 4px;
-  border-radius: 4px;
+.phoneWidget:hover .phoneNumber {
+  color: #2563EB;
 }
 
-.miniGraph {
-  margin-left: 4px;
-  opacity: 0.8;
-  filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.3));
+.phoneGlow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: shimmerFlow 5s infinite cubic-bezier(0.44, 0.14, 0.34, 0.97);
 }
 
-.miniGraph path {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  animation: drawLine 3s ease forwards infinite;
-}
-
-@keyframes drawLine {
-  0% { stroke-dashoffset: 100; }
-  50% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: 0; }
+@keyframes shimmerFlow {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
 }
 
 .growthSignal {
