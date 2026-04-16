@@ -96,22 +96,65 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-weight: 800;
-  font-size: 1.5rem;
-  letter-spacing: -0.03em;
+  z-index: 30;
 }
 
-.logoIcon {
+.logoWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #3B82F6, #1D4ED8);
-  border-radius: 12px;
-  color: white;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+  padding: 0.75rem 1.6rem;
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* 3D highlight edges - adjusted for dark blue background */
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 
+    0 10px 25px -5px rgba(29, 78, 216, 0.2),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.logoWrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15),
+    transparent 80%
+  );
+  opacity: 1;
+}
+
+.logoWrapper:hover {
+  transform: translateY(-4px) scale(1.02);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 20px 40px -10px rgba(37, 99, 235, 0.3),
+    0 12px 20px -8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.navLogo {
+  height: 28px;
+  width: auto;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.logoWrapper:hover .navLogo {
+  transform: scale(1.08) translateY(-1px);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
 }
 
 .nav {
@@ -170,7 +213,8 @@
   align-items: center;
   width: 100%;
   max-width: 1100px;
-  padding: 4rem 1.5rem;
+  padding: 0rem 1.5rem;
+  padding-bottom: 6.8rem;
   z-index: 20;
 }
 
@@ -224,21 +268,21 @@
 
 .headline {
   font-size: 2.75rem;
-  line-height: 1.15;
+  line-height: 1;
   font-weight: 900;
   letter-spacing: -0.03em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
   color: #0F172A;
   max-width: 900px;
   text-wrap: balance;
 }
 
 @media (min-width: 768px) {
-  .headline { font-size: 3.75rem; }
+  .headline { font-size: 3.45rem; }
 }
 
 @media (min-width: 1024px) {
-  .headline { font-size: 4.5rem; }
+  .headline { font-size: 4rem; }
 }
 
 .breakIfDesktop { display: none; }

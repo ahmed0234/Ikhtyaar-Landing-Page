@@ -196,26 +196,16 @@ export default function HeroSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <div className={styles.logo}>
-            <div className={styles.logoIcon}>
-              <a href="https://ikhtiyaar.com/" target="_blank">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {/* Left vertical pillar */}
-                  <path d="M2 2h7v20H2V2z" />
-                  {/* Top slanted arm */}
-                  <path d="M10 10l8-8h5v6l-8 8h-5v-6z" />
-                  {/* Bottom right block */}
-                  <path d="M16 16h7v7h-7v-7z" />
-                </svg>
-              </a>
-            </div>
-            <a href="https://ikhtiyaar.com/" target="_blank">
-              <img src="/logos/logo1.png" alt="" className="w-24" />
+            <a
+              href="https://ikhtiyaar.com/"
+              target="_blank"
+              className={styles.logoWrapper}
+            >
+              <img
+                src="/logos/navlogo.png"
+                alt="Ikhtyaar"
+                className={styles.navLogo}
+              />
             </a>
           </div>
         </motion.header>
@@ -536,75 +526,109 @@ export default function HeroSection() {
                   <motion.div
                     className={`${styles.pointerArrow} ${styles.pointerLeft}`}
                     initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ 
+                    whileInView={{
                       opacity: [0.7, 1, 0.7],
-                      y: [-8, 8, -8]
+                      y: [-8, 8, -8],
                     }}
                     viewport={{ once: false }}
                     transition={{
                       duration: 4.5,
                       repeat: Infinity,
-                      ease: "easeInOut"
+                      ease: "easeInOut",
                     }}
-                    style={{ left: "-120px", top: "-200px", width: "240px", height: "280px" }}
+                    style={{
+                      left: "-120px",
+                      top: "-200px",
+                      width: "240px",
+                      height: "280px",
+                    }}
                   >
-                    <svg width="100%" height="100%" viewBox="0 0 240 280" fill="none" overflow="visible" xmlns="http://www.w3.org/2000/svg">
+                    <svg
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 240 280"
+                      fill="none"
+                      overflow="visible"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
                       <defs>
-                        <linearGradient id="flowGradLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <linearGradient
+                          id="flowGradLeft"
+                          x1="0%"
+                          y1="0%"
+                          x2="100%"
+                          y2="100%"
+                        >
                           <stop offset="0%" stopColor="rgba(37,99,235,0)" />
                           <stop offset="100%" stopColor="#2563EB" />
                         </linearGradient>
                       </defs>
-                      
+
                       {/* Faint ambient track */}
-                      <path 
-                        d="M 40 40 C 180 40, 200 150, 210 240" 
-                        stroke="#2563EB" 
-                        strokeWidth="2" 
-                        opacity="0.15" 
-                        strokeLinecap="round" 
-                        fill="none" 
+                      <path
+                        d="M 40 40 C 180 40, 200 150, 210 240"
+                        stroke="#2563EB"
+                        strokeWidth="2"
+                        opacity="0.15"
+                        strokeLinecap="round"
+                        fill="none"
                       />
-                      
+
                       {/* Breathing organic tail that expands/contracts, anchored at tip */}
-                      <motion.path 
-                        d="M 40 40 C 180 40, 200 150, 210 240" 
-                        stroke="url(#flowGradLeft)" 
-                        strokeWidth="5" 
-                        strokeLinecap="round" 
-                        fill="none" 
+                      <motion.path
+                        d="M 40 40 C 180 40, 200 150, 210 240"
+                        stroke="url(#flowGradLeft)"
+                        strokeWidth="5"
+                        strokeLinecap="round"
+                        fill="none"
                         initial={{ pathLength: 0.1 }}
-                        animate={{ 
+                        animate={{
                           pathLength: [0.1, 1, 0.1],
-                          opacity: [1, 0.5, 1]
+                          opacity: [1, 0.5, 1],
                         }}
-                        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                        transition={{
+                          duration: 3.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
                       />
 
                       {/* Directional energy core dashed flow */}
-                      <motion.path 
-                        d="M 40 40 C 180 40, 200 150, 210 240" 
-                        stroke="#3B82F6" 
-                        strokeWidth="2.5" 
-                        strokeLinecap="round" 
-                        fill="none" 
+                      <motion.path
+                        d="M 40 40 C 180 40, 200 150, 210 240"
+                        stroke="#3B82F6"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        fill="none"
                         strokeDasharray="6 26"
                         initial={{ strokeDashoffset: 0 }}
                         animate={{ strokeDashoffset: -128 }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
                         opacity="0.9"
                       />
 
                       {/* Floating Arrow Head */}
-                      <motion.path 
-                        d="M 192 202 L 210 240 L 220 199" 
-                        stroke="#2563EB" 
-                        strokeWidth="4" 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        fill="none" 
-                        animate={{ x: [-2, 3, -2], y: [-2, 3, -2], scale: [0.95, 1.05, 0.95] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      <motion.path
+                        d="M 192 202 L 210 240 L 220 199"
+                        stroke="#2563EB"
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                        animate={{
+                          x: [-2, 3, -2],
+                          y: [-2, 3, -2],
+                          scale: [0.95, 1.05, 0.95],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
                       />
                     </svg>
                   </motion.div>
@@ -613,76 +637,112 @@ export default function HeroSection() {
                   <motion.div
                     className={`${styles.pointerArrow} ${styles.pointerRight}`}
                     initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ 
+                    whileInView={{
                       opacity: [0.7, 1, 0.7],
-                      y: [8, -8, 8]
+                      y: [8, -8, 8],
                     }}
                     viewport={{ once: false }}
                     transition={{
                       duration: 5.5,
                       repeat: Infinity,
                       ease: "easeInOut",
-                      delay: 0.5
+                      delay: 0.5,
                     }}
-                    style={{ right: "-90px", top: "-100px", width: "240px", height: "180px" }}
+                    style={{
+                      right: "-90px",
+                      top: "-100px",
+                      width: "240px",
+                      height: "180px",
+                    }}
                   >
-                    <svg width="100%" height="100%" viewBox="0 0 240 280" fill="none" overflow="visible" xmlns="http://www.w3.org/2000/svg">
+                    <svg
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 240 280"
+                      fill="none"
+                      overflow="visible"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
                       <defs>
-                        <linearGradient id="flowGradRight" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <linearGradient
+                          id="flowGradRight"
+                          x1="100%"
+                          y1="0%"
+                          x2="0%"
+                          y2="100%"
+                        >
                           <stop offset="0%" stopColor="rgba(16,185,129,0)" />
                           <stop offset="100%" stopColor="#10B981" />
                         </linearGradient>
                       </defs>
-                      
+
                       {/* Faint ambient track - Green for variety since the tag is Blue/Green */}
-                      <path 
-                        d="M 200 40 C 60 40, 40 150, 30 240" 
-                        stroke="#0095ff" 
-                        strokeWidth="2" 
-                        opacity="0.15" 
-                        strokeLinecap="round" 
-                        fill="none" 
+                      <path
+                        d="M 200 40 C 60 40, 40 150, 30 240"
+                        stroke="#0095ff"
+                        strokeWidth="2"
+                        opacity="0.15"
+                        strokeLinecap="round"
+                        fill="none"
                       />
-                      
+
                       {/* Breathing organic tail */}
-                      <motion.path 
-                        d="M 200 40 C 60 40, 40 150, 30 240" 
-                        stroke="#0095ff" 
-                        strokeWidth="5" 
-                        strokeLinecap="round" 
-                        fill="none" 
+                      <motion.path
+                        d="M 200 40 C 60 40, 40 150, 30 240"
+                        stroke="#0095ff"
+                        strokeWidth="5"
+                        strokeLinecap="round"
+                        fill="none"
                         initial={{ pathLength: 0.15 }}
-                        animate={{ 
+                        animate={{
                           pathLength: [0.15, 1, 0.15],
-                          opacity: [1, 0.5, 1]
+                          opacity: [1, 0.5, 1],
                         }}
-                        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                        transition={{
+                          duration: 4.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 0.5,
+                        }}
                       />
 
                       {/* Directional energy core dashed flow */}
-                      <motion.path 
-                        d="M 200 40 C 60 40, 40 150, 30 240" 
-                        stroke="#2878ed" 
-                        strokeWidth="2.5" 
-                        strokeLinecap="round" 
-                        fill="none" 
+                      <motion.path
+                        d="M 200 40 C 60 40, 40 150, 30 240"
+                        stroke="#2878ed"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        fill="none"
                         strokeDasharray="6 26"
                         initial={{ strokeDashoffset: 0 }}
                         animate={{ strokeDashoffset: -128 }}
-                        transition={{ duration: 1.8, repeat: Infinity, ease: "linear" }}
+                        transition={{
+                          duration: 1.8,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
                         opacity="0.9"
                       />
 
                       {/* Floating Arrow Head */}
-                      <motion.path 
-                        d="M 48 202 L 30 240 L 20 199" 
-                        stroke="#0095ff" 
-                        strokeWidth="4" 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        fill="none" 
-                        animate={{ x: [2, -3, 2], y: [-2, 3, -2], scale: [0.95, 1.05, 0.95] }}
-                        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+                      <motion.path
+                        d="M 48 202 L 30 240 L 20 199"
+                        stroke="#0095ff"
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                        animate={{
+                          x: [2, -3, 2],
+                          y: [-2, 3, -2],
+                          scale: [0.95, 1.05, 0.95],
+                        }}
+                        transition={{
+                          duration: 2.2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 0.2,
+                        }}
                       />
                     </svg>
                   </motion.div>
@@ -954,11 +1014,8 @@ export default function HeroSection() {
                   </p>
                 </div>
                 <div className={styles.calendarWidgetWrapper}>
-                  <div className="zcal-inline-widget bg-white text-blue-500 w-full h-full">
-                    <a
-                      href="https://zcal.co/demowork/30min"
-                      className="text-blue-500 bg-white"
-                    >
+                  <div className="zcal-inline-widget">
+                    <a href="https://zcal.co/i/mJZfHlI7">
                       Discovery Call - Schedule a meeting
                     </a>
                   </div>
