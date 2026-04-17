@@ -190,7 +190,7 @@ export default function HeroSection() {
 
         {/* Navigation Layer */}
         <motion.header
-          className={`${styles.header}  h-28`}
+          className={styles.header}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -488,7 +488,7 @@ export default function HeroSection() {
                     <div className={styles.glassShine}></div>
 
                     <video
-                      src="/James.mp4"
+                      src="https://ik.imagekit.io/qv0rtvqa7/James.mp4?tr=orig"
                       autoPlay
                       loop
                       muted
@@ -1104,7 +1104,7 @@ export default function HeroSection() {
                   </svg>
                 </button>
                 <video
-                  src="/James.mp4"
+                  src="https://ik.imagekit.io/qv0rtvqa7/James.mp4?tr=orig"
                   controls
                   autoPlay
                   className={styles.videoModalPlayer}

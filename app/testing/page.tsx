@@ -1,10 +1,11 @@
+
 const page = () => {
   return (
-    <div className="zcal-inline-widget bg-white text-blue-500 w-7 h-36">
-      <a href="https://zcal.co/demowork/30min" className="text-blue-500 bg-white">
-        Discovery Call - Schedule a meeting
-      </a>
-    </div>
+   <video src="https://ik.imagekit.io/qv0rtvqa7/James.mp4?tr=orig" className="size-72" autoPlay
+                      loop
+                      muted
+                      playsInline
+                      ></video>
   );
 };
 

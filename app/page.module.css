@@ -89,8 +89,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.25rem;
+  height: 80px;
   z-index: 20;
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 1.5rem 2rem;
+    height: 112px;
+  }
 }
 
 .logo {
@@ -103,13 +111,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.6rem;
+  padding: 0.5rem 1rem;
   background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);
   border: 1px solid rgba(255, 255, 255, 0.1);
   /* 3D highlight edges - adjusted for dark blue background */
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   border-left: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
+  border-radius: 12px;
   box-shadow: 
     0 10px 25px -5px rgba(29, 78, 216, 0.2),
     0 8px 10px -6px rgba(0, 0, 0, 0.1),
@@ -119,6 +127,13 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .logoWrapper {
+    padding: 0.75rem 1.6rem;
+    border-radius: 20px;
+  }
 }
 
 .logoWrapper::before {
@@ -144,12 +159,18 @@
 }
 
 .navLogo {
-  height: 28px;
+  height: 20px;
   width: auto;
   position: relative;
   z-index: 1;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
   transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (min-width: 768px) {
+  .navLogo {
+    height: 28px;
+  }
 }
 
 .logoWrapper:hover .navLogo {
@@ -160,7 +181,7 @@
 .phoneWidget {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
+  gap: 0.5rem;
   /* Higher contrast blue-tinted glass */
   background: linear-gradient(
     135deg,
@@ -169,7 +190,7 @@
   );
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 0.6rem 1.4rem;
+  padding: 0.4rem 0.9rem;
   border-radius: 9999px;
   /* More defined 3D border */
   border: 1px solid rgba(255, 255, 255, 0.8);
@@ -192,6 +213,13 @@
   50% { transform: translateY(-3px); }
 }
 
+@media (min-width: 768px) {
+  .phoneWidget {
+    padding: 0.6rem 1.4rem;
+    gap: 0.9rem;
+  }
+}
+
 @media (min-width: 1024px) {
   .phoneWidget { display: flex; }
 }
@@ -210,14 +238,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   background: linear-gradient(135deg, #2563EB, #1D4ED8);
   border-radius: 50%;
   color: white;
   position: relative;
   z-index: 2;
   box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+}
+
+@media (min-width: 768px) {
+  .phoneIconWrapper {
+    width: 36px;
+    height: 36px;
+  }
 }
 
 .phoneIconWrapper svg {
@@ -234,6 +269,18 @@
   100% { transform: scale(1) rotate(0deg); }
 }
 
+.phoneIconWrapper svg {
+  width: 12px;
+  height: 12px;
+}
+
+@media (min-width: 768px) {
+  .phoneIconWrapper svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
 .phoneDetails {
   display: flex;
   flex-direction: column;
@@ -243,21 +290,29 @@
 }
 
 .phoneLabel {
-  font-size: 0.6rem;
-  font-weight: 800;
-  color: #64748B;
-  text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 2px;
 }
 
+@media (min-width: 768px) {
+  .phoneLabel {
+    font-size: 0.6rem;
+  }
+}
+
 .phoneNumber {
-  font-size: 1.05rem;
+  font-size: 0.85rem;
   font-weight: 900;
   color: #1E293B;
   text-decoration: none;
   transition: color 0.3s ease;
   letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+  .phoneNumber {
+    font-size: 1.05rem;
+  }
 }
 
 .phoneWidget:hover .phoneNumber {
